@@ -144,12 +144,12 @@
                                             <td>{{ $stock->type}}</td>
                                             <td>{{ $stock->unite}}</td>
                                             <td>
-                                                <button class="show-modal button button1" data-toggle="modal" data-target="#showModal" data-reference="{{$stock->reference}}" data-designation="{{$stock->designation}}" data-nomenclature="{{$stock->nomenclature}}" data-type="{{$stock->type}}" data-unite="{{$stock->unite}}" data-delai_semaine="{{$stock->delai_semaine}}" data-prix_standard="{{$stock->prix_standard}}" data-lot_reaprvs="{{$stock->lot_reaprvs}}" data-stock_min="{{$stock->stock_min}}" data-stock_max="{{$stock->stock_max}}">
-                                                <span class="glyphicon glyphicon-eye-open"></span> Show</button>
-                                                <button class="edit-modal button2 button1" data-toggle="modal" data-target="#editModal" data-id="{{$stock->id}}" data-reference="{{$stock->reference}}" data-designation="{{$stock->designation}}" data-nomenclature="{{$stock->nomenclature}}" data-type="{{$stock->type}}" data-unite="{{$stock->unite}}" data-delai_semaine="{{$stock->delai_semaine}}" data-prix_standard="{{$stock->prix_standard}}" data-lot_reaprvs="{{$stock->lot_reaprvs}}" data-stock_min="{{$stock->stock_min}}" data-stock_max="{{$stock->stock_max}}">
-                                                <span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                                <button class="delete-modal button3 button1" data-toggle="modal" data-target="#deleteModal" data-id="{{$stock->id}}"  data-reference="{{$stock->reference}}" data-designation="{{$stock->designation}}" data-nomenclature="{{$stock->nomenclature}}" data-type="{{$stock->type}}" data-unite="{{$stock->unite}}" data-delai_semaine="{{$stock->delai_semaine}}" data-prix_standard="{{$stock->prix_standard}}" data-lot_reaprvs="{{$stock->lot_reaprvs}}" data-stock_min="{{$stock->stock_min}}" data-stock_max="{{$stock->stock_max}}">
-                                                <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-reference="{{$stock->reference}}" data-designation="{{$stock->designation}}" data-nomenclature="{{$stock->nomenclature}}" data-type="{{$stock->type}}" data-unite="{{$stock->unite}}" data-delai_semaine="{{$stock->delai_semaine}}" data-prix_standard="{{$stock->prix_standard}}" data-lot_reaprvs="{{$stock->lot_reaprvs}}" data-stock_min="{{$stock->stock_min}}" data-stock_max="{{$stock->stock_max}}">
+                                                <i class="fa fa-eye"></i></span>
+                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$stock->id}}" data-reference="{{$stock->reference}}" data-designation="{{$stock->designation}}" data-nomenclature="{{$stock->nomenclature}}" data-type="{{$stock->type}}" data-unite="{{$stock->unite}}" data-delai_semaine="{{$stock->delai_semaine}}" data-prix_standard="{{$stock->prix_standard}}" data-lot_reaprvs="{{$stock->lot_reaprvs}}" data-stock_min="{{$stock->stock_min}}" data-stock_max="{{$stock->stock_max}}">
+                                                <i class="fa fa-pencil"></i></span>
+                                                <span class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$stock->id}}"  data-reference="{{$stock->reference}}" data-designation="{{$stock->designation}}" data-nomenclature="{{$stock->nomenclature}}" data-type="{{$stock->type}}" data-unite="{{$stock->unite}}" data-delai_semaine="{{$stock->delai_semaine}}" data-prix_standard="{{$stock->prix_standard}}" data-lot_reaprvs="{{$stock->lot_reaprvs}}" data-stock_min="{{$stock->stock_min}}" data-stock_max="{{$stock->stock_max}}">
+                                                <i class="fa fa-trash-o"></i></span>
 
                                             </td>
                                         </tr>
@@ -169,7 +169,7 @@
 
 <!-- Modal form to add a Stock -->
 <div id="addModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -178,86 +178,122 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form">
 
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Référence:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="reference_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Désignation:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="designation_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Nomenclature:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="nomenclature_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Type:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="type_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Unité:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="unite_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Délai en semaine:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="delai_semaine_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Prix standard:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="prix_standard_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Lot de réaprovisionnement:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="lot_reaprvs_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Stock min:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="stock_min_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Stock max:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="stock_max_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
+                    </div>
+                    </div>
+
                     </form>
                     <div class="modal-footer">
                         <button type="button" class="button button1 add" data-dismiss="modal">
@@ -276,7 +312,7 @@
 
 <!-- Modal form to show Stock -->
 <div id="showModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -287,87 +323,121 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form">
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="reference">Référence:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="reference">Référence:</label>
+                            </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="reference_show" disabled>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="designation">Désignation:</label>
                         </div>
-                            <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="designation">Désignation:</label>
+                        </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="designation_show" disabled>
                             </div>
                         </div>
+                        </div>
+                        </div>
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="nomenclature">Nomenclature:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="nomenclature_show" cols="40" rows="5" disabled></textarea>
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="nomenclature">Nomenclature:</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" id="nomenclature_show" disabled>
                             </div>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="type">Type:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="type_show" cols="40" rows="5" disabled></textarea>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="type">Type:</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" id="type_show" disabled>
                             </div>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="unite">Unité:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="unite_show" cols="40" rows="5" disabled></textarea>
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="unite">Unité:</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" id="unite_show" disabled>
                             </div>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="delai_semaine">delai en semaine:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="delai_semaine_show" cols="40" rows="5" disabled></textarea>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="delai_semaine">delai en semaine:</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" id="delai_semaine_show" disabled>
                             </div>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="prix_standard">Prix standard:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="prix_standard_show" cols="40" rows="5" disabled></textarea>
+                        </div>
+
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="prix_standard">Prix standard:</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" id="prix_standard_show" disabled>
                             </div>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="lot_reaprvs">Lot de réaprovisionnement:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="lot_reaprvs_show" cols="40" rows="5" disabled></textarea>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="lot_reaprvs">Lot de réaprovisionnement:</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" id="lot_reaprvs_show" disabled>
                             </div>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="stock_min">Stock min:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="stock_min_show" cols="40" rows="5" disabled></textarea>
+                        </div>
+
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="stock_min">Stock min:</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" id="stock_min_show" disabled>
                             </div>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="stock_max">Stock max:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="stock_max_show" cols="40" rows="5" disabled></textarea>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="stock_max">Stock max:</label>
                             </div>
+                            <div class="col">
+                                <input class="form-control" id="stock_max_show" disabled>
+                            </div>
+                        </div>
+                        </div>
                         </div>
                         
                     </form>
@@ -384,7 +454,7 @@
 
 <!-- Modal form to edit a Stock -->
 <div id="editModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -399,94 +469,119 @@
                             </div>
                         </div>
                         
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Référence:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Référence:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="reference_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Désignation:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                                 <input type="text" class="form-control" id="designation_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Nomenclature:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Nomenclature:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="nomenclature_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Type:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Type:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="type_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Unité:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Unité:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="unite_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Délai en semaine:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Délai en semaine:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="delai_semaine_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Prix standard:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Prix standard:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="prix_standard_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Lot de réaprovisionnement:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Lot de réaprovisionnement:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="lot_reaprvs_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Stock min:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Stock min:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="stock_min_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Stock max:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Stock max:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="stock_max_edit">
                             </div>
+                        </div>
+                        </div>
                         </div>
 
                         
@@ -628,7 +723,7 @@
 
                      
                         toastr.success('Successfully added Stock!', 'Success Alert', {timeOut: 5000});
-                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.reference + "</td><td>" + data.designation + "</td><td>" + data.nomenclature + "</td><td>" + data.type + "</td><td>" + data.unite + "</td><td><button class='show-modal button button1' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><span class='glyphicon glyphicon-edit'></span> Edit</button><button class='delete-modal button3 button1' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.reference + "</td><td>" + data.designation + "</td><td>" + data.nomenclature + "</td><td>" + data.type + "</td><td>" + data.unite + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><i class='fa fa-pencil'></i></span><span class='delete-modal btn btn-sm btn-outline-danger' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><i class='fa fa-trash-o'></i></span></td></tr>");
 
                         
                         $('.new_published').on('ifChanged', function(event){
@@ -706,7 +801,7 @@
                 success: function(data) {
                     
                     toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.reference + "</td><td>" + data.designation + "</td><td>" + data.nomenclature + "</td><td>" + data.type + "</td><td>" + data.unite + "</td><td><button class='show-modal button button1' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal button3 button1'  data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.reference + "</td><td>" + data.designation + "</td><td>" + data.nomenclature + "</td><td>" + data.type + "</td><td>" + data.unite + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger'  data-reference='" + data.reference + "' data-designation='" + data.designation + "' data-nomenclature='" + data.nomenclature + "' data-type='" + data.type + "' data-unite='" + data.unite + "' data-delai_semaine='" + data.delai_semaine + "' data-prix_standard='" + data.prix_standard + "' data-lot_reaprvs='" + data.lot_reaprvs + "' data-stock_min='" + data.stock_min + "' data-stock_max='" + data.stock_max + "'><i class='fa fa-trash-o'></i></span></td></tr>");
                         
                     
                 }

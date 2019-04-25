@@ -146,12 +146,12 @@
                                             <td>{{ $poste_charges->nbre_poste}}</td>
                                             <td>{{ $poste_charges->commentaire}}</td>
                                             <td>
-                                                <button class="show-modal button button1" data-toggle="modal" data-target="#showModal" data-id_operation="{{$poste_charges->id_operation}}" data-num_section="{{$poste_charges->num_section}}" data-num_soussection="{{$poste_charges->num_soussection}}" data-machine="{{$poste_charges->machine}}" data-main_oeuvre="{{$poste_charges->main_oeuvre}}" data-designation="{{$poste_charges->designation}}" data-taux_horaire_forfait="{{$poste_charges->taux_horaire_forfait}}" data-nbre_poste="{{$poste_charges->nbre_poste}}" data-capacité_nominale="{{$poste_charges->capacité_nominale}}" data-commentaire="{{$poste_charges->commentaire}}">
-                                                <span class="glyphicon glyphicon-eye-open"></span> Show</button>
-                                                <button class="edit-modal button2 button1" data-toggle="modal" data-target="#editModal" data-id="{{$poste_charges->id}}" data-id_operation="{{$poste_charges->id_operation}}" data-num_section="{{$poste_charges->num_section}}" data-num_soussection="{{$poste_charges->num_soussection}}" data-machine="{{$poste_charges->machine}}" data-main_oeuvre="{{$poste_charges->main_oeuvre}}" data-designation="{{$poste_charges->designation}}" data-taux_horaire_forfait="{{$poste_charges->taux_horaire_forfait}}" data-nbre_poste="{{$poste_charges->nbre_poste}}" data-capacité_nominale="{{$poste_charges->capacité_nominale}}" data-commentaire="{{$poste_charges->commentaire}}">
-                                                <span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                                <button class="delete-modal button3 button1" data-toggle="modal" data-target="#deleteModal" data-id="{{$poste_charges->id}}"  data-id_operation="{{$poste_charges->id_operation}}" data-num_section="{{$poste_charges->num_section}}" data-num_soussection="{{$poste_charges->num_soussection}}" data-machine="{{$poste_charges->machine}}" data-main_oeuvre="{{$poste_charges->main_oeuvre}}" data-designation="{{$poste_charges->designation}}" data-taux_horaire_forfait="{{$poste_charges->taux_horaire_forfait}}" data-nbre_poste="{{$poste_charges->nbre_poste}}" data-capacité_nominale="{{$poste_charges->capacité_nominale}}" data-commentaire="{{$poste_charges->commentaire}}">
-                                                <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-id_operation="{{$poste_charges->id_operation}}" data-num_section="{{$poste_charges->num_section}}" data-num_soussection="{{$poste_charges->num_soussection}}" data-machine="{{$poste_charges->machine}}" data-main_oeuvre="{{$poste_charges->main_oeuvre}}" data-designation="{{$poste_charges->designation}}" data-taux_horaire_forfait="{{$poste_charges->taux_horaire_forfait}}" data-nbre_poste="{{$poste_charges->nbre_poste}}" data-capacité_nominale="{{$poste_charges->capacité_nominale}}" data-commentaire="{{$poste_charges->commentaire}}">
+                                                <i class="fa fa-eye"></i></span>
+                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$poste_charges->id}}" data-id_operation="{{$poste_charges->id_operation}}" data-num_section="{{$poste_charges->num_section}}" data-num_soussection="{{$poste_charges->num_soussection}}" data-machine="{{$poste_charges->machine}}" data-main_oeuvre="{{$poste_charges->main_oeuvre}}" data-designation="{{$poste_charges->designation}}" data-taux_horaire_forfait="{{$poste_charges->taux_horaire_forfait}}" data-nbre_poste="{{$poste_charges->nbre_poste}}" data-capacité_nominale="{{$poste_charges->capacité_nominale}}" data-commentaire="{{$poste_charges->commentaire}}">
+                                                <i class="fa fa-pencil"></i></span>
+                                                <span class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$poste_charges->id}}"  data-id_operation="{{$poste_charges->id_operation}}" data-num_section="{{$poste_charges->num_section}}" data-num_soussection="{{$poste_charges->num_soussection}}" data-machine="{{$poste_charges->machine}}" data-main_oeuvre="{{$poste_charges->main_oeuvre}}" data-designation="{{$poste_charges->designation}}" data-taux_horaire_forfait="{{$poste_charges->taux_horaire_forfait}}" data-nbre_poste="{{$poste_charges->nbre_poste}}" data-capacité_nominale="{{$poste_charges->capacité_nominale}}" data-commentaire="{{$poste_charges->commentaire}}">
+                                                <i class="fa fa-trash-o"></i></span>
 
                                             </td>
                                         </tr>
@@ -180,86 +180,133 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form">
 
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Opération:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="id_operation_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">numéro de section:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="num_section_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">numéro de soussection:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="num_soussection_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Machine:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="machine_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Main d'oeuvre:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="main_oeuvre_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Désignation:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="designation_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">taux_horaire_forfait:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="taux_horaire_forfait_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Nombre de poste:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="nbre_poste_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Capacité nominale:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="capacité_nominale_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Commentaire:</label>
                         </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="commentaire_add" placeholder="Text" class="form-control">
+                        <div class="col">
+                            <textarea  id="commentaire_add" class="form-control"></textarea>
                         </div>
                     </div>
+                    </div>
+                    </div>
+
+
+
                     </form>
                     <div class="modal-footer">
                         <button type="button" class="button button1 add" data-dismiss="modal">
@@ -289,88 +336,121 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form">
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="id_operation">Opération:</label>
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="id_operation">Opération:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <input type="name" class="form-control" id="id_operation_show" disabled>
-                            </div>
+                        <div class="col">
+                            <input type="name" class="form-control" id="id_operation_show" disabled>
                         </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="num_section">Numéro de Section:</label>
+                        </div>
+                        <div class="col">
+                            <input type="name" class="form-control" id="num_section_show" disabled>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="num_section">Numéro de section:</label>
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="num_soussection">numéro de soussection:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <input type="name" class="form-control" id="num_section_show" disabled>
-                            </div>
+                        <div class="col">
+                            <input class="form-control" type="text" id="num_soussection_show" cols="40" rows="5" disabled>
                         </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="machine">Machine:</label>
+                        </div>
+                        <div class="col">
+                            <input class="form-control" type="text" id="machine_show" cols="40" rows="5" disabled>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="num_soussection">numéro de soussection:</label>
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="main_oeuvre">Main d'oeuvre:</label>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="num_soussection_show" cols="40" rows="5" disabled></textarea>
+                            <div class="col">
+                                <input class="form-control" type="text" id="main_oeuvre_show" cols="40" rows="5" disabled>
                             </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="designation">Désignation:</label>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="machine">Machine:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="machine_show" cols="40" rows="5" disabled></textarea>
+                            <div class="col">
+                                <input class="form-control" type="text" id="designation_show" cols="40" rows="5" disabled>
                             </div>
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="taux_horaire_forfait">taux_horaire_forfait:</label>
                         </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="main_oeuvre">Main d'oeuvre:</label>
+                        <div class="col">
+                            <input class="form-control" type="text" id="taux_horaire_forfait_show" cols="40" rows="5" disabled>
                         </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="main_oeuvre_show" cols="40" rows="5" disabled></textarea>
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="nbre_poste">nombre de poste:</label>
+                        </div>
+                        <div class="col">
+                        <input class="form-control" type="text" id="nbre_poste_show" cols="40" rows="5" disabled>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="capacité_nominale">Capacité nominale:</label>
+                        </div>
+                        <div class="col">
+                            <input class="form-control" type="text" id="capacité_nominale_show" cols="40" rows="5" disabled>
+                        </div>
+                        </div>
+                        </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="commentaire">Commentaire:</label>
+                        </div>
+                            <div class="col">
+                                <textarea class="form-control" id="commentaire_show" disabled></textarea>
                             </div>
-                        </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="designation">Désignation:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="designation_show" cols="40" rows="5" disabled></textarea>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="taux_horaire_forfait">taux_horaire_forfait:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="taux_horaire_forfait_show" cols="40" rows="5" disabled></textarea>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="nbre_poste">nombre de poste:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="nbre_poste_show" cols="40" rows="5" disabled></textarea>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="capacité_nominale">Capacité nominale:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="capacité_nominale_show" cols="40" rows="5" disabled></textarea>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="commentaire">Commentaire:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="commentaire_show" cols="40" rows="5" disabled></textarea>
-                            </div>
-                        </div>
+                    </div>
+                    </div>
+                    </div>
                         
                     </form>
                     <div class="modal-footer">
@@ -401,99 +481,123 @@
                             </div>
                         </div>
                         
-                        <div class="row form-group">
-                        <div class="col col-md-3">
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Opération:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                                 <input type="text" class="form-control" id="id_operation_edit">
-                            </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Numéro de section:</label>
                         </div>
-                        <div class="col-12 col-md-9">
-                                <input type="text" class="form-control" id="num_section_edit">
-                            </div>
+                        <div class="col">
+                            <input type="text" class="form-control" id="num_section_edit">
                         </div>
+                    </div>
+                    </div>
+                    </div>
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Numéro de soussection:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Numéro de soussection:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="num_soussection_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Machine:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Machine:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="machine_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Main d'oeuvre:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Main d'oeuvre:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="main_oeuvre_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Désignation:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Désignation:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="designation_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">taux_horaire_forfait:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">taux_horaire_forfait:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="taux_horaire_forfait_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Nombre de poste:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Nombre de poste:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="nbre_poste_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Capacité nominale:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Capacité nominale:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="capacité_nominale_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Commentaire:</label>
                         </div>
-                        <div class="col-12 col-md-9">
-                                <input type="text" class="form-control" id="commentaire_edit">
+
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Commentaire:</label>
+                            </div>
+                            <div class="col">
+                                <textarea class="form-control" id="commentaire_edit"></textarea>
                             </div>
                         </div>
-
-                        
-
-                        
+                        </div>
+                        </div>
 
                         <div class="modal-footer">
                         <button type="button" class="button button1  edit" data-dismiss="modal">
@@ -648,7 +752,7 @@
 
                      
                         toastr.success('Successfully added Poste de charges!', 'Success Alert', {timeOut: 5000});
-                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.id_operation + "</td><td>" + data.main_oeuvre + "</td><td>" + data.designation + "</td><td>" + data.nbre_poste + "</td><td>" + data.commentaire + "</td><td><button class='show-modal button button1' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-edit'></span> Edit</button><button class='delete-modal button3 button1' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.id_operation + "</td><td>" + data.main_oeuvre + "</td><td>" + data.designation + "</td><td>" + data.nbre_poste + "</td><td>" + data.commentaire + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-pencil'></i></span><span class='delete-modal btn btn-sm btn-outline-danger' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-trash-o'></i></span></td></tr>");
 
                         
                         $('.new_published').on('ifChanged', function(event){
@@ -709,7 +813,7 @@
                 success: function(data) {
                     
                     toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.id_operation + "</td><td>" + data.main_oeuvre + "</td><td>" + data.designation + "</td><td>" + data.nbre_poste + "</td><td>" + data.commentaire + "</td><td><button class='show-modal button button1' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal button3 button1'  data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.id_operation + "</td><td>" + data.main_oeuvre + "</td><td>" + data.designation + "</td><td>" + data.nbre_poste + "</td><td>" + data.commentaire + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger'  data-id_operation='" + data.id_operation + "' data-num_section='" + data.num_section + "' data-num_soussection='" + data.num_soussection + "' data-machine='" + data.machine + "' data-main_oeuvre='" + data.main_oeuvre + "' data-designation='" + data.designation + "' data-taux_horaire_forfait='" + data.taux_horaire_forfait + "' data-nbre_poste='" + data.nbre_poste + "' data-capacité_nominale='" + data.capacité_nominale + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-trash-o'></i></span></td></tr>");
                         
                     
                 }

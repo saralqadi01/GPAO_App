@@ -40,13 +40,20 @@
                         </div>
 
                         <div class="form-group row">
-
+                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
                             <div class="col-md-6">
-                                <input id="role" type="hidden" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" value="{{ old('role') }}" required>
+                                <!-- <input id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" value="{{ old('role') }}" required> -->
 
-                                <script>
+                                <select name="role" id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" value="{{ old('role') }}" required>
+                                        <option value="utilisateur">Utilisateur</option>
+                                        <option value="administrateur">Administrateur</option>
+                                        <option value="chef d'atelier">Chef d'atelier</option>
+                                        <option value="chef de projet">Chef de projet</option>
+                                </select>
+
+                                <!-- <script>
                                 document.getElementById("role").defaultValue = "utilisateur";
-                                </script>
+                                </script> -->
 
                                 @if ($errors->has('role'))
                                     <span class="invalid-feedback" role="alert">

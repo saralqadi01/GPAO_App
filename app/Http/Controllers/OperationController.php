@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Operation;
 use App\Ordre_fabrication;
 use App\Produit;
-use App\Poste_charges;
+use App\Poste_charge;
 use App\Atelier;
+use App\Client;
+use App\audit;
 use DB;
+
 
 class OperationController extends Controller
 {
@@ -54,7 +57,7 @@ class OperationController extends Controller
         $operation->produit_id = $request->produit_id;
         $operation->atelier_id = $request->atelier_id;
         $operation->libelle_operation = $request->libelle_operation;
-        $operation->num_poste_charge = $request->num_poste_charge;
+        $operation->poste_charge_id = $request->poste_charge_id;
         $operation->temps_preparation = $request->temps_preparation;
         $operation->temps_execution = $request->temps_execution;
         $operation->temps_transfert = $request->temps_transfert;
@@ -102,7 +105,7 @@ class OperationController extends Controller
             $operation->num_operation = $request->num_operation;
             $operation->produit_id = $request->produit_id;
             $operation->atelier_id = $request->atelier_id;
-            $operation->num_poste_charge = $request->num_poste_charge;
+            $operation->poste_charge_id = $request->poste_charge_id;
             $operation->temps_preparation = $request->temps_preparation;
             $operation->temps_execution = $request->temps_execution;
             $operation->temps_transfert = $request->temps_transfert;
@@ -144,13 +147,51 @@ class OperationController extends Controller
 
     public function index2($id)
     {
-        $produits = Produit::where('id','=',$id);
-        $produits = Produit::all();
+        $produit = DB::table('produits')->where('id','=',$id)->first();
+
+        $audit = DB::table('audit')->where('produit_id','=',$produit->id)->get();
+
+      
         $operations = Operation::all();
         $ordre_fabrications = Ordre_fabrication::all();
         $ateliers = Atelier::all();
+        $clients = Client::all();
+        $poste_charges = Poste_charge::all();
 
-        return view('profil_projet.index',['produits' => $produits,'operations' => $operations,'ordre_fabrications' => $ordre_fabrications,'ateliers' => $ateliers]);
+        $produit_date = audit::select(DB::raw("changetime"))
+            ->get()->toArray();
+        $produit_date = array_column($produit_date, 'changetime');
+
+        $produit_pourcentage = audit::select(DB::raw("pourcentage"))
+            ->get()->toArray();
+        $produit_pourcentage = array_column($produit_pourcentage, 'pourcentage');
+
+        $produit_id = audit::select(DB::raw("produit_id"))
+            ->where('produit_id','=',$produit->id)
+            ->get()->toArray();
+        $produit_id = array_column($produit_id, 'produit_id');
+
+        return view('profil_projet.index',['produit' => $produit,'operations' => $operations,'ordre_fabrications' => $ordre_fabrications,'ateliers' => $ateliers, 'poste_charges' => $poste_charges, 'clients' => $clients])
+        ->with('produit_date',json_encode($produit_date,JSON_NUMERIC_CHECK))
+        ->with('produit_pourcentage',json_encode($produit_pourcentage,JSON_NUMERIC_CHECK));
     }
+
+//     public function LineChart()
+//     {
+//         $produit_date = audit::select(DB::raw("changetime"))
+//         ->get()->toArray();
+//      $produit_date = array_column($produit_date, 'changetime');
+
+//      $produit_pourcentage = audit::select(DB::raw("pourcentage"))
+//         ->get()->toArray();
+//      $produit_pourcentage = array_column($produit_pourcentage, 'pourcentage');
+   
+ 
+//    return view('acceuil')
+//           ->with('produit_date',json_encode($produit_date,JSON_NUMERIC_CHECK))
+//           ->with('produit_pourcentage',json_encode($produit_pourcentage,JSON_NUMERIC_CHECK));
+
+        
+//     }
 
 }

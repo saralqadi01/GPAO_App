@@ -147,12 +147,12 @@
                                             <td>{{ $client->num_tel}}</td>
                                             <td>{{ $client->email}}</td>
                                             <td>
-                                                <button class="show-modal button button1" data-toggle="modal" data-target="#showModal" data-nom="{{$client->nom}}" data-prenom="{{$client->prenom}}" data-adrs="{{$client->adrs}}" data-num_tel="{{$client->num_tel}}" data-email="{{$client->email}}">
-                                                <span class="glyphicon glyphicon-eye-open"></span> Show</button>
-                                                <button class="edit-modal button2 button1" data-toggle="modal" data-target="#editModal" data-id="{{$client->id}}" data-nom="{{$client->nom}}" data-prenom="{{$client->prenom}}" data-adrs="{{$client->adrs}}" data-num_tel="{{$client->num_tel}}" data-email="{{$client->email}}">
-                                                <span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                                <button class="delete-modal button3 button1" data-toggle="modal" data-target="#deleteModal" data-id="{{$client->id}}"  data-nom="{{$client->nom}}" data-prenom="{{$client->prenom}}" data-adrs="{{$client->adrs}}" data-num_tel="{{$client->num_tel}}" data-email="{{$client->email}}">
-                                                <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-nom="{{$client->nom}}" data-prenom="{{$client->prenom}}" data-adrs="{{$client->adrs}}" data-num_tel="{{$client->num_tel}}" data-email="{{$client->email}}">
+                                                <i class="fa fa-eye"></i></span>
+                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$client->id}}" data-nom="{{$client->nom}}" data-prenom="{{$client->prenom}}" data-adrs="{{$client->adrs}}" data-num_tel="{{$client->num_tel}}" data-email="{{$client->email}}">
+                                                <i class="fa fa-pencil"></i></span>
+                                                <span class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$client->id}}"  data-nom="{{$client->nom}}" data-prenom="{{$client->prenom}}" data-adrs="{{$client->adrs}}" data-num_tel="{{$client->num_tel}}" data-email="{{$client->email}}">
+                                                <i class="fa fa-trash-o"></i></span>
 
                                             </td>
                                         </tr>
@@ -221,7 +221,7 @@
                             <input type="text" id="email_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    </form>
+                    
                     <div class="modal-footer">
                         <button type="button" class="button button1 add" data-dismiss="modal">
                             <span id="" class='glyphicon glyphicon-check'></span> Add
@@ -230,6 +230,7 @@
                             <span class='glyphicon glyphicon-remove'></span> Close
                         </button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -273,7 +274,7 @@
                             <label class="control-label col-sm-2" for="adrs">Adresse:</label>
                         </div>
                             <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="adrs_show" cols="40" rows="5" disabled></textarea>
+                                <textarea class="form-control" id="adrs_show" disabled></textarea>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -507,51 +508,11 @@
                     'email': $('#email_add').val(),
                 },
                 success: function(data) {
-                    $('.errorNom').addClass('hidden');
-                    $('.errorPrenom').addClass('hidden');
-                    $('.errorAdrs').addClass('hidden');
-                    $('.errorNum_tel').addClass('hidden');
-                    $('.errorEmail').addClass('hidden');
 
-                    if ((data.errors)) {
-                        setTimeout(function () {
-                            $('#addModal').modal('show');
-                            toastr.error('Validation error!', 'Error Alert', {timeOut: 5000});
-                        }, 500);
-
-                        if (data.errors.nom) {
-                            $('.errorNom').removeClass('hidden');
-                            $('.errorNom').text(data.errors.nom);
-                        }
-                        if (data.errors.prenom) {
-                            $('.errorPrenom').removeClass('hidden');
-                            $('.errorPrenom').text(data.errors.prenom);
-                        }
-                        if (data.errors.adrs) {
-                            $('.errorAdrs').removeClass('hidden');
-                            $('.errorAdrs').text(data.errors.adrs);
-                        }
-                        if (data.errors.num_tel) {
-                            $('.errorNum_tel').removeClass('hidden');
-                            $('.errorNum_tel').text(data.errors.num_tel);
-                        }
-                        if (data.errors.email) {
-                            $('.errorEmail').removeClass('hidden');
-                            $('.errorEmail').text(data.errors.email);
-                        }
-                    } else {
                         toastr.success('Successfully added Client!', 'Success Alert', {timeOut: 5000});
-                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.nom + "</td><td>" + data.prenom + "</td><td>" + data.adrs + "</td><td>" + data.num_tel + "</td><td>" + data.email + "</td><td><button class='show-modal button button1' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><span class='glyphicon glyphicon-edit'></span> Edit</button><button class='delete-modal button3 button1' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.nom + "</td><td>" + data.prenom + "</td><td>" + data.adrs + "</td><td>" + data.num_tel + "</td><td>" + data.email + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><i class='fa fa-pencil'></i></span><span class='delete-modal btn btn-sm btn-outline-danger' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><i class='fa fa-trash-o'></i></span></td></tr>");
 
                         
-                        $('.new_published').iCheck({
-                            checkboxClass: 'icheckbox_square-yellow',
-                            radioClass: 'iradio_square-yellow',
-                            increaseArea: '20%'
-                        });
-                        $('.new_published').on('ifToggled', function(event){
-                            $(this).closest('tr').toggleClass('warning');
-                        });
                         $('.new_published').on('ifChanged', function(event){
                             id = $(this).data('id');
                             $.ajax({
@@ -566,7 +527,6 @@
                                 },
                             });
                         });
-                    }
                 },
             });
         });
@@ -631,7 +591,7 @@
                         }
                     } else {
                         toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.nom + "</td><td>" + data.prenom + "</td><td>" + data.adrs + "</td><td>" + data.num_tel + "</td><td>" + data.email + "</td><td><button class='show-modal button button1' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-nom='" + data.nom + "' data-preom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal button3 button1' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.nom + "</td><td>" + data.prenom + "</td><td>" + data.adrs + "</td><td>" + data.num_tel + "</td><td>" + data.email + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-nom='" + data.nom + "' data-preom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger' data-nom='" + data.nom + "' data-prenom='" + data.prenom + "' data-adrs='" + data.adrs + "' data-num_tel='" + data.num_tel + "' data-email='" + data.email + "'><i class='fa fa-trash-o'></i></span></td></tr>");
                         
                     }
                 }

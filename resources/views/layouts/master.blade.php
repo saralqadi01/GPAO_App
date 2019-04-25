@@ -51,7 +51,7 @@
                 <a class="navbar-brand" href="./"><img src="" alt="Logo"></a>
                 <a class="navbar-brand hidden" href="./"><img src="" alt="Logo"></a>
             </div>
-
+            @if(Auth::user()->role == "administrateur")
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
@@ -85,6 +85,56 @@
                     
                 </ul>
             </div><!-- /.navbar-collapse -->
+
+            @elseif(Auth::user()->role == "utilisateur")
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="acceuil"> <i class="menu-icon fa fa-dashboard"></i>Tableau de bord </a>
+                    </li>
+                    
+                    <li class="active">
+                        <a href="produits">  <i class="menu-icon fa fa-laptop"></i>Gestion de projet</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="clients">  <i class="menu-icon fa fa-laptop"></i>Gestion de client</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="ateliers">  <i class="menu-icon fa fa-laptop"></i>Gestion d'atelier</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="stocks">  <i class="menu-icon fa fa-laptop"></i>Gestion de stock</a>
+                    </li>
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+            @elseif(Auth::user()->role == "chef d'atelier")
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="acceuil"> <i class="menu-icon fa fa-dashboard"></i>Tableau de bord </a>
+                    </li>
+                    
+                    <li class="active">
+                        <a href="produits">  <i class="menu-icon fa fa-laptop"></i>Gestion de projet</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="ateliers">  <i class="menu-icon fa fa-laptop"></i>Gestion d'atelier</a>
+                    </li>
+
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+            @endif
+
+            
         </nav>
     </aside><!-- /#left-panel -->
 
@@ -161,6 +211,10 @@
     <!-- <script src="{{ asset('assets/js/widgets.js') }}"></script> -->
     <script src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
+
     
     @yield('javascript')
 

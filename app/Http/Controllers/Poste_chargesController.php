@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Poste_charges;
+use App\Poste_charge;
 
 class Poste_chargesController extends Controller
 {
@@ -19,7 +19,7 @@ class Poste_chargesController extends Controller
      */
     public function index()
     {
-        $poste_charges = Poste_charges::all();
+        $poste_charges = Poste_charge::all();
 
         return view('poste_charges.index', ['poste_charges' => $poste_charges]);
     }
@@ -42,7 +42,7 @@ class Poste_chargesController extends Controller
      */
     public function store(Request $request)
     {
-        $poste_charges = new Poste_charges();
+        $poste_charges = new Poste_charge();
         $poste_charges->id_operation = $request->id_operation;
         $poste_charges->num_section = $request->num_section;
         $poste_charges->num_soussection = $request->num_soussection;
@@ -65,7 +65,7 @@ class Poste_chargesController extends Controller
      */
     public function show($id)
     {
-        $poste_charges = Poste_charges::findOrFail($id);
+        $poste_charges = Poste_charge::findOrFail($id);
 
         return view('poste_charges.show', ['poste_charges' => $poste_charges]);
     }
@@ -90,7 +90,7 @@ class Poste_chargesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $poste_charges = Poste_charges::findOrFail($id);
+        $poste_charges = Poste_charge::findOrFail($id);
         $poste_charges->id_operation = $request->id_operation;
         $poste_charges->num_section = $request->num_section;
         $poste_charges->num_soussection = $request->num_soussection;
@@ -113,7 +113,7 @@ class Poste_chargesController extends Controller
      */
     public function destroy($id)
     {
-        $poste_charges = Poste_charges::findOrFail($id);
+        $poste_charges = Poste_charge::findOrFail($id);
         $poste_charges->delete();
 
         return response()->json($poste_charges);

@@ -36,14 +36,16 @@ Route::get('profil/{id}', 'OperationController@index2');
 
 
 
+Route::get('acceuil', 'AcceuilController@chartjs');
 
 
 
 
 
-Route::get('acceuil', function () {
-    return view('acceuil');
-});
+
+// Route::get('acceuil', function () {
+//     return view('acceuil');
+// });
 
 
 

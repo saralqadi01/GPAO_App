@@ -48,6 +48,13 @@ class ClientsController extends Controller
         $client->adrs = $request->adrs;
         $client->num_tel = $request->num_tel;
         $client->email = $request->email;
+
+        Validator::make($request->all(), [
+            'email' => 'required|email|unique:clients|max:255',
+        ])->validate();
+        
+        
+
         $client->save();
         return response()->json($client);
     }
@@ -62,7 +69,7 @@ class ClientsController extends Controller
     {
         $client = Client::findOrFail($id);
 
-        return view('client.show', ['client' => $client]);
+        return view('clients.show', ['client' => $client]);
     }
 
     /**

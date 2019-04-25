@@ -139,12 +139,12 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->role}}</td>
                                             <td>
-                                                <button class="show-modal button button1" data-toggle="modal" data-target="#showModal" data-name="{{$user->name}}" data-email="{{$user->email}}" data-role="{{$user->role}}">
-                                                <span class="glyphicon glyphicon-eye-open"></span> Show</button>
-                                                <button class="edit-modal button2 button1" data-toggle="modal" data-target="#editModal" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-role="{{$user->role}}">
-                                                <span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                                <button class="delete-modal button3 button1" data-toggle="modal" data-target="#deleteModal" data-id="{{$user->id}}"  data-name="{{$user->name}}" data-email="{{$user->email}}" data-role="{{$user->role}}">
-                                                <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-name="{{$user->name}}" data-email="{{$user->email}}" data-role="{{$user->role}}">
+                                                <i class="fa fa-eye"></i></span>
+                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$user->id}}" data-name="{{$user->name}}" data-email="{{$user->email}}" data-role="{{$user->role}}">
+                                                <i class="fa fa-pencil"></i></span>
+                                                <span class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$user->id}}"  data-name="{{$user->name}}" data-email="{{$user->email}}" data-role="{{$user->role}}">
+                                                <i class="fa fa-trash-o"></i></span>
 
                                             </td>
                                         </tr>
@@ -199,7 +199,7 @@
                             <label class="control-label col-sm-2" for="role">Role:</label>
                         </div>
                             <div class="col-12 col-md-9">
-                                <textarea class="form-control" id="role_show" cols="40" rows="5" disabled></textarea>
+                                <input class="form-control" id="role_show" disabled>
                             </div>
                         </div>
                         
@@ -256,8 +256,10 @@
                         </div>
                             <div class="col-12 col-md-9">
                                 <select name="select" id="role_edit" class="form-control">
-                                    <option value="1">Utilisateur</option>
-                                    <option value="2">Administrateur</option>
+                                    <option value="utilisateur">Utilisateur</option>
+                                    <option value="administrateur">Administrateur</option>
+                                    <option value="chef d'atelier">Chef d'atelier</option>
+                                    <option value="chef de projet">Chef de projet</option>
                                 </select>
                             </div>
                         </div>
@@ -407,7 +409,7 @@
                 success: function(data) {
                     
                     toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.name + "</td><td>" + data.email + "</td><td>" + data.role + "</td><td><button class='show-modal button button1' data-name='" + data.name + "' data-email='" + data.email + "' data-role='" + data.role + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-name='" + data.name + "' data-email='" + data.email + "' data-role='" + data.role + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal button3 button1' data-name='" + data.name + "' data-email='" + data.email + "' data-role='" + data.role + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.name + "</td><td>" + data.email + "</td><td>" + data.role + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-name='" + data.name + "' data-email='" + data.email + "' data-role='" + data.role + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-name='" + data.name + "' data-email='" + data.email + "' data-role='" + data.role + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger' data-name='" + data.name + "' data-email='" + data.email + "' data-role='" + data.role + "'><i class='fa fa-trash-o'></i></span></td></tr>");
                         
                     
                 }

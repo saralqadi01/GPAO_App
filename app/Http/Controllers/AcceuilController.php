@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Produit;
-use App\Client;
+use DB;
 
-class ProduitController extends Controller
+class AcceuilController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -20,10 +21,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        $produits = Produit::all();
-        $clients = Client::all();
-
-        return view('produits.index', ['produits' => $produits, 'clients' => $clients]);
+        $produit = Produit::all();
     }
 
     /**
@@ -44,14 +42,7 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        $produit = new Produit();
-        $produit->libelle = $request->libelle;
-        $produit->client_id = $request->client_id;
-        $produit->pourcentage = $request->pourcentage;
-        $produit->date_debut = $request->date_debut;
-        $produit->date_fin = $request->date_fin;
-        $produit->save();
-        return response()->json($produit);
+        //
     }
 
     /**
@@ -62,9 +53,7 @@ class ProduitController extends Controller
      */
     public function show($id)
     {
-        $produit = Produit::findOrFail($id);
-
-        return view('produit.show', ['produit' => $produit]);
+        //
     }
 
     /**
@@ -87,14 +76,7 @@ class ProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $produit = Produit::findOrFail($id);
-            $produit->libelle = $request->libelle;
-            $produit->client_id = $request->client_id;
-            $produit->pourcentage = $request->pourcentage;
-            $produit->date_debut = $request->date_debut;
-            $produit->date_fin = $request->date_fin;
-            $produit->save();
-            return response()->json($produit);
+        //
     }
 
     /**
@@ -105,9 +87,34 @@ class ProduitController extends Controller
      */
     public function destroy($id)
     {
-        $produit = Produit::findOrFail($id);
-        $produit->delete();
-
-        return response()->json($produit);
+        //
     }
+
+    public function chartjs()
+    {
+        //   $produit = Produit::select(DB::raw("SUM(id) as count"))
+        //      ->orderBy("created_at")
+        //      ->groupBy("date_debut")
+        //      ->get()->toArray();
+        //   $produit = array_column($produit, 'count');
+
+            $produit_libelle = Produit::select(DB::raw("libelle"))
+               ->get()->toArray();
+            $produit_libelle = array_column($produit_libelle, 'libelle');
+
+            $produit_pourcentage = Produit::select(DB::raw("pourcentage"))
+               ->get()->toArray();
+            $produit_pourcentage = array_column($produit_pourcentage, 'pourcentage');
+          
+        
+          return view('acceuil')
+                 ->with('produit_libelle',json_encode($produit_libelle,JSON_NUMERIC_CHECK))
+                 ->with('produit_pourcentage',json_encode($produit_pourcentage,JSON_NUMERIC_CHECK));
+
+       
+
+        
+    }
+
+    
 }

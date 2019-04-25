@@ -101,6 +101,8 @@
 </head>
 
 <body>
+
+    @if(Auth::user()->role == "chef d'atelier")
     <div class="breadcrumbs">
         <div class="col-sm-4">
             <div class="page-header float-left">
@@ -108,7 +110,6 @@
                     <button class="button0 button1 btn btn-default" >
                     <a href="acceuil"> Retour </a>
                     </button>
-                    <button class="button button1 add-modal" data-toggle="modal" data-target="#addModal">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -131,6 +132,7 @@
                                         <tr>
                                             <th>Libelle</th>
                                             <th>Client</th>
+                                            <th>Pourcentage</th>
                                             <th>Date début</th>
                                             <th>Date fin</th>
                                             <th>Action</th>
@@ -148,15 +150,14 @@
                                             @endif
                                             @endforeach
 
+                                            <td>{{ $produit->pourcentage}}</td>
                                             <td>{{ $produit->date_debut}}</td>
                                             <td>{{ $produit->date_fin}}</td>
                                             <td>
-                                                <button class="show-modal button button1" data-toggle="modal" data-target="#showModal" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
-                                                <span class="glyphicon glyphicon-eye-open"></span> Show</button>
-                                                <button class="edit-modal button2 button1" data-toggle="modal" data-target="#editModal" data-id="{{$produit->id}}" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
-                                                <span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                                <button class="delete-modal button3 button1" data-toggle="modal" data-target="#deleteModal" data-id="{{$produit->id}}"  data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
-                                                <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <i class="fa fa-eye"></i></span>
+                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$produit->id}}" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <i class="fa fa-pencil"></i></span>
 
                                             </td>
                                         </tr>
@@ -172,6 +173,83 @@
                 </div>
             </div><!-- .animated -->
             </div><!-- .content -->
+    @else
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                    <button class="button0 button1 btn btn-default" >
+                    <a href="acceuil"> Retour </a>
+                    </button>
+                    <span class="btn btn-sm btn-outline-success add-modal" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+
+            <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Gestion de projet</strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                
+                                    <thead>
+                                        <tr>
+                                            <th>Libelle</th>
+                                            <th>Client</th>
+                                            <th>Pourcentage</th>
+                                            <th>Date début</th>
+                                            <th>Date fin</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        {{ csrf_field() }}
+                                    </thead>
+                                    <tbody>
+                                        @foreach($produits as $produit )
+                                        <tr class="item{{$produit->id}}">
+                                            <td><a href="profil/{{ $produit->id }}">{{ $produit->libelle }}</a></td>
+                                            
+                                            @foreach($clients as $client)
+                                            @if($produit->client_id == $client->id)
+                                            <td>{{ $client->nom }} {{ $client->prenom }}</td>
+                                            @endif
+                                            @endforeach
+
+                                            <td>{{ $produit->pourcentage}}</td>
+                                            <td>{{ $produit->date_debut}}</td>
+                                            <td>{{ $produit->date_fin}}</td>
+                                            <td>
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <i class="fa fa-eye"></i></span>
+                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$produit->id}}" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <i class="fa fa-pencil"></i></span>
+                                                <span class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$produit->id}}"  data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <i class="fa fa-trash-o"></i></span>
+
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+            </div><!-- .content -->
+        
+        @endif
+            
 
            
 
@@ -201,17 +279,27 @@
                         <div class="col-12 col-md-9">
                         <select name="select" id="client_id_add" class="form-control">
                             @foreach($clients as $client)
-                                <option value="{{$client->id}}">{{$client->nom}} {{$client->prenom}}</option>
+                                <option value="{{$client['id']}}">{{$client['nom']}} {{$client['prenom']}}</option>
                             @endforeach
                         </select>
                         </div>
                     </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="text-input" class="form-control-label">Pourcentage:</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="pourcentage_add" placeholder="pourcentage" class="form-control">
+                        </div>
+                    </div>
+
                     <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="text-input" class="form-control-label">Date début:</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="date" id="date_debut_add" placeholder="Text" class="form-control">
+                            <input type="date" id="date_debut_add" placeholder="date début" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -219,7 +307,7 @@
                             <label for="text-input" class="form-control-label">Date fin:</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="date" id="date_fin_add" placeholder="Text" class="form-control">
+                            <input type="date" id="date_fin_add" placeholder="date fin" class="form-control">
                         </div>
                     </div>
                     
@@ -268,11 +356,20 @@
                         <div class="col-12 col-md-9">
                         <select name="select" id="client_id_show" class="form-control" disabled>
                             @foreach($clients as $client)
-                                <option value="{{$client->id}}">{{$client->nom}} {{$client->prenom}}</option>
+                                <option value="{{$client['id']}}">{{$client['nom']}} {{$client['prenom']}}</option>
                             @endforeach
                         </select>
                         </div>
-                    </div>
+                        </div>
+
+                        <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class="control-label col-sm-2" for="libelle">Pourcentage:</label>
+                        </div>
+                            <div class="col-12 col-md-9">
+                                <input type="name" class="form-control" id="pourcentage_show" disabled>
+                            </div>
+                        </div>
 
                         <div class="row form-group">
                         <div class="col col-md-3">
@@ -335,10 +432,19 @@
                         <div class="col-12 col-md-9">
                             <select name="select" id="client_id_edit" class="form-control">
                                 @foreach($clients as $client)
-                                    <option value="{{$client->id}}">{{$client->nom}} {{$client->prenom}}</option>
+                                    <option value="{{$client['id']}}">{{$client['nom']}} {{$client['prenom']}}</option>
                                 @endforeach
                             </select>
                         </div>
+                        </div>
+
+                        <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="text-input" class="form-control-label">Pourcentage:</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                                <input type="text" class="form-control" id="pourcentage_edit">
+                            </div>
                         </div>
 
                         <div class="row form-group">
@@ -470,6 +576,7 @@
             $('.modal-title').text('');
             $('#libelle_show').val($(this).data('libelle'));
             $('#client_id_show').val($(this).data('client_id'));
+            $('#pourcentage_show').val($(this).data('pourcentage'));
             $('#date_debut_show').val($(this).data('date_debut'));
             $('#date_fin_show').val($(this).data('date_fin'));
             $('#showModal').modal('show');
@@ -489,6 +596,7 @@
                     '_token': $('input[name=_token]').val(),
                     'libelle': $('#libelle_add').val(),
                     'client_id': $('#client_id_add').val(),
+                    'pourcentage': $('#pourcentage_add').val(),
                     'date_debut': $('#date_debut_add').val(),
                     'date_fin': $('#date_fin_add').val(),
                 },
@@ -496,7 +604,7 @@
 
                     
                         toastr.success('Successfully added Projet!', 'Success Alert', {timeOut: 5000});
-                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.client_id + "</td><td>" + data.date_debut + "</td><td>" + data.date_fin + "</td><td><button class='show-modal button button1' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><span class='glyphicon glyphicon-edit'></span> Edit</button><button class='delete-modal button3 button1' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.client_id + "</td><td>" + data.pourcentage + "</td><td>" + data.date_debut + "</td><td>" + data.date_fin + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-pencil'></i></span><span class='delete-modal btn btn-sm btn-outline-danger' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-trash-o'></i></span></td></tr>");
 
                         
                         $('.new_published').on('ifChanged', function(event){
@@ -524,6 +632,7 @@
             $('#id_edit').val($(this).data('id'));
             $('#libelle_edit').val($(this).data('libelle'));
             $('#client_id_edit').val($(this).data('client_id'));
+            $('#pourcentage_edit').val($(this).data('pourcentage'));
             $('#date_debut_edit').val($(this).data('date_debut'));
             $('#date_fin_edit').val($(this).data('date_fin'));
             id = $('#id_edit').val();
@@ -538,13 +647,14 @@
                     'id': $("#id").val(),
                     'libelle': $("#libelle_edit").val(),
                     'client_id': $('#client_id_edit').val(),
+                    'pourcentage': $('#pourcentage_edit').val(),
                     'date_debut': $('#date_debut_edit').val(),
                     'date_fin': $('#date_fin_edit').val()
                 },
                 success: function(data) {
 
                         toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.client_id + "</td><td>" + data.date_debut + "</td><td>" + data.date_fin + "</td><td><button class='show-modal button button1' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal button3 button1' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.client_id + "</td><td>" + data.pourcentage + "</td><td>" + data.date_debut + "</td><td>" + data.date_fin + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-trash-o'></i></span></td></tr>");
                         
                     
                 }

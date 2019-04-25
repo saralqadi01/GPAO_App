@@ -141,12 +141,12 @@
                                             <td>{{ $atelier->effectif }}</td>
                                             <td>{{ $atelier->commentaire}}</td>
                                             <td>
-                                                <button class="show-modal button button1" data-toggle="modal" data-target="#showModal" data-libelle="{{$atelier->libelle}}" data-effectif="{{$atelier->effectif}}" data-commentaire="{{$atelier->commentaire}}">
-                                                <span class="glyphicon glyphicon-eye-open"></span> Show</button>
-                                                <button class="edit-modal button2 button1" data-toggle="modal" data-target="#editModal" data-id="{{$atelier->id}}" data-libelle="{{$atelier->libelle}}" data-effectif="{{$atelier->effectif}}" data-commentaire="{{$atelier->commentaire}}">
-                                                <span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                                <button class="delete-modal button3 button1" data-toggle="modal" data-target="#deleteModal" data-id="{{$atelier->id}}"  data-libelle="{{$atelier->libelle}}" data-effectif="{{$atelier->effectif}}" data-commentaire="{{$atelier->commentaire}}">
-                                                <span class="glyphicon glyphicon-trash"></span> Delete</button>
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-libelle="{{$atelier->libelle}}" data-effectif="{{$atelier->effectif}}" data-commentaire="{{$atelier->commentaire}}">
+                                                <i class="fa fa-eye"></i></span>
+                                                <span class="edit-modal btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$atelier->id}}" data-libelle="{{$atelier->libelle}}" data-effectif="{{$atelier->effectif}}" data-commentaire="{{$atelier->commentaire}}">
+                                                <i class="fa fa-pencil"></i></span>
+                                                <span class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$atelier->id}}"  data-libelle="{{$atelier->libelle}}" data-effectif="{{$atelier->effectif}}" data-commentaire="{{$atelier->commentaire}}">
+                                                <i class="fa fa-trash-o"></i></span>
 
                                             </td>
                                         </tr>
@@ -451,7 +451,7 @@
 
                      
                         toastr.success('Successfully added Client!', 'Success Alert', {timeOut: 5000});
-                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.effectif + "</td><td>" + data.commentaire + "</td><td><button class='show-modal button button1' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-edit'></span> Edit</button><button class='delete-modal button3 button1' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.effectif + "</td><td>" + data.commentaire + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-trash-o'></i></span></td></tr>");
 
                         
                         $('.new_published').on('ifChanged', function(event){
@@ -498,7 +498,7 @@
                 success: function(data) {
                     
                     toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.effectif + "</td><td>" + data.commentaire + "</td><td><button class='show-modal button button1' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal button3 button1' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.effectif + "</td><td>" + data.commentaire + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger' data-libelle='" + data.libelle + "' data-effectif='" + data.effectif + "' data-commentaire='" + data.commentaire + "'><i class='fa fa-trash-o'></i></span></td></tr>");
                         
                     
                 }

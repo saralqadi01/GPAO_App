@@ -30,7 +30,7 @@ class Ordre_fabricationController extends Controller
      */
     public function create()
     {
-        $produits = Produit::all();
+        //
 
     }
 

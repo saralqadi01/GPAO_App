@@ -92,11 +92,13 @@
 
 
 
+
 </style>
 
 
 	<link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
+    
     
     
 
@@ -128,7 +130,7 @@
             
         </div>
 
-
+        
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
@@ -148,17 +150,14 @@
                                             <th>Date fin</th>
                                             
                                         </tr>
-                                        
+                                        {{ csrf_field() }}
                                     </thead>
-                                    <tbody>
-                                    @foreach($produits as $produit )
                                         <tr>
                                             <td>{{ $produit->libelle }}</td>
-                                            <td>{{ $produit->client_id }}</td>
+                                            <td>{{ $produit->client_id }} </td>
                                             <td>{{ $produit->date_debut }}</td>
                                             <td>{{ $produit->date_fin }}</td>
                                         </tr>
-                                        @endforeach
 
                                     </tbody>
                                 </table>
@@ -171,6 +170,11 @@
             </div><!-- .animated -->
         </div><!-- .content -->
 
+        
+            <div class="wrapper">
+                <canvas id="myChart" height="100" width="300"></canvas>
+            </div>
+        
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
@@ -187,7 +191,6 @@
                                     <thead>
                                         <tr>
                                             <th>Libéllé</th>
-                                            <th>Projet</th>
                                             <th>Commentaire</th>
                                             <th>Action</th>
                                         </tr>
@@ -195,38 +198,33 @@
                                     </thead>
                                     <tbody>
                                          @foreach($ordre_fabrications as $ordre_fabrication )
+                                         @if($ordre_fabrication->produit_id == $produit->id)
                                         <tr class="item{{$ordre_fabrication->id}}">
                                             <td>{{ $ordre_fabrication->libelle }}</td>
-
-                                            @foreach($produits as $produit)
-                                            @if($ordre_fabrication->produit_id == $produit->id)
-                                            <td>{{ $produit->libelle }}</td>
-                                            @endif
-                                            @endforeach
-                                            
                                             <td>{{ $ordre_fabrication->commentaie }}</td>
-                                            <td>
 
+                                            <td>
                                             <a href="" class="ng-scope">
-                                            <span class="show-modal btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn-outline-success" data-target="#showModalOF" data-toggle="modal" data-placement="top" title="" data-original-title="Consulter" data-libelle="{{$ordre_fabrication->libelle}}" data-produit_id="{{$ordre_fabrication->produit_id}}" data-commentaie="{{$ordre_fabrication->commentaie}}">
+                                            <span class="show-modal btn btn-sm btn-outline-success" data-target="#showModalOF" data-toggle="modal" data-placement="top" title="" data-original-title="Consulter" data-libelle="{{$ordre_fabrication->libelle}}" data-produit_id="{{$ordre_fabrication->produit_id}}" data-commentaie="{{$ordre_fabrication->commentaie}}">
                                             <i class="fa fa-eye"></i>
                                             </span>
                                             </a>
 
                                             <a href="#" class="ng-scope">
-                                            <span class="edit-modal btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn-outline-warning" data-toggle="modal" data-placement="top" title="" data-original-title="Modifier" data-target="#editModalOF" data-id="{{$ordre_fabrication->id}}" data-libelle="{{$ordre_fabrication->libelle}}" data-produit_id="{{$ordre_fabrication->produit_id}}" data-commentaie="{{$ordre_fabrication->commentaie}}">
+                                            <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-placement="top" title="" data-original-title="Modifier" data-target="#editModalOF" data-id="{{$ordre_fabrication->id}}" data-libelle="{{$ordre_fabrication->libelle}}" data-produit_id="{{$ordre_fabrication->produit_id}}" data-commentaie="{{$ordre_fabrication->commentaie}}">
                                                 <i class="fa fa-pencil">
                                                 </i>
                                             </span>
                                             </a>
 
                                             <a href="#" class="ng-scope">
-                                            <span data-toggle="modal" data-target="#deleteModalOF" class="delete-modal btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn-outline-danger" data-toggle="modal" data-placement="top" title="" data-original-title="Supprimer" data-id="{{$ordre_fabrication->id}}" data-libelle="{{$ordre_fabrication->libelle}}" data-produit_id="{{$ordre_fabrication->produit_id}}" data-commentaie="{{$ordre_fabrication->commentaie}}">
+                                            <span data-toggle="modal" data-target="#deleteModalOF" class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-placement="top" title="" data-original-title="Supprimer" data-id="{{$ordre_fabrication->id}}" data-libelle="{{$ordre_fabrication->libelle}}" data-produit_id="{{$ordre_fabrication->produit_id}}" data-commentaie="{{$ordre_fabrication->commentaie}}">
                                                 <i class="fa fa-trash-o"></i>
                                             </span>
                                             </a>
                                             </td>
                                         </tr>
+                                        @endif
                                         @endforeach
                                         
                                     </tbody>
@@ -239,7 +237,7 @@
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
-
+         
 <!-- Modal form to add OF -->
 <div id="addModalOF" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -265,10 +263,9 @@
                             <label for="text-input" class="form-control-label">Projet:</label>
                         </div>
                         <div class="col-12 col-md-9">
-                        <select name="select" id="produit_id_add" class="form-control">
-                            @foreach($produits as $produit)
+                        <select name="select" id="produit_id_addOF" class="form-control">
                                 <option value="{{$produit->id}}" selected>{{$produit->libelle}}</option>
-                            @endforeach
+                            
                         </select>
                         </div>
                     </div>
@@ -366,7 +363,11 @@
                             <label for="text-input" class="form-control-label">Projet:</label>
                         </div>
                         <div class="col-12 col-md-9">
-                        <input type="text" id="libelle_add" placeholder="Text" class="form-control">
+                            <select name="select" id="produit_id_editOF" class="form-control">
+                            
+                                <option value="{{$produit->id}}" selected>{{$produit->libelle}}</option>
+                              
+                            </select>
                         </div>
                         </div>
 
@@ -446,11 +447,10 @@
                                 <button class="button button1" data-toggle="modal" data-target="#addModalOperation">Ajouter</button>
                                     <thead>
                                         <tr>
-                                            <th>Operation</th>
-                                            
+                                            <th>Num Operation</th>
                                             <th>Nom opération</th>
                                             <th>Atelier</th>
-                                            <th>Numéro de poste de charge</th>
+                                            <th>Poste de charge</th>
                                             <th>Commentaire</th>
                                             <th>Action</th>
                                         </tr>
@@ -458,33 +458,40 @@
                                     </thead>
                                     <tbody>
                                         @foreach($operations as $operation )
+                                        @if($operation->produit_id == $produit->id)
                                         <tr class="item{{$operation->id}}">
-                                            <td>{{ $operation->num_operation}}</td>
+                                            <td>{{ $operation->num_operation }}</td>
+                                            <td>{{ $operation->libelle_operation }}</td>
 
                                             @foreach($ateliers as $atelier)
-                                            @if($atelier->atelier_id == $atelier->id)
+                                            @if($operation->atelier_id == $atelier->id)
                                             <td>{{ $atelier->libelle }}</td>
                                             @endif
                                             @endforeach
 
-                                            <td>{{ $operation->libelle_operation}}</td>
-                                            <td>{{ $operation->num_poste_charge}}</td>
+                                            @foreach($poste_charges as $poste_charge)
+                                            @if($operation->poste_charge_id == $poste_charge->id)
+                                            <td>{{ $poste_charge->designation}}</td>
+                                            @endif
+                                            @endforeach
+
                                             <td>{{ $operation->commentaire}}</td>
                                             <td>
-                                            <span class="show-modal btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn-outline-success" data-target="#showModalOperation" data-toggle="modal" data-placement="top" title="" data-original-title="Consulter" data-num_operation="{{$operation->num_operation}}" data-produit_id="{{$operation->produit_id}}" data-atelier_id="{{$operation->atelier_id}}" data-libelle_operation="{{$operation->libelle_operation}}" data-num_poste_charge="{{$operation->num_poste_charge}}" data-temps_preparation="{{$operation->temps_preparation}}" data-temps_execution="{{$operation->temps_execution}}" data-temps_transfert="{{$operation->temps_transfert}}" data-h_debut="{{$operation->h_debut}}" data-h_fin="{{$operation->h_fin}}" data-commentaire="{{$operation->commentaire}}">
+                                            <span class="show-modal btn btn-sm btn-outline-success" data-target="#showModalOperation" data-toggle="modal" data-placement="top" title="" data-original-title="Consulter" data-num_operation="{{$operation->num_operation}}" data-produit_id="{{$operation->produit_id}}" data-atelier_id="{{$operation->atelier_id}}" data-libelle_operation="{{$operation->libelle_operation}}" data-poste_charge_id="{{$operation->poste_charge_id}}" data-temps_preparation="{{$operation->temps_preparation}}" data-temps_execution="{{$operation->temps_execution}}" data-temps_transfert="{{$operation->temps_transfert}}" data-h_debut="{{$operation->h_debut}}" data-h_fin="{{$operation->h_fin}}" data-commentaire="{{$operation->commentaire}}">
                                             <i class="fa fa-eye"></i>
                                             </span>
 
-                                            <span class="edit-modal btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn-outline-warning" data-target="#editModalOperation" data-toggle="modal" data-placement="top" title="" data-original-title="Modifier" data-id="{{$operation->id}}" data-num_operation="{{$operation->num_operation}}" data-produit_id="{{$operation->produit_id}}" data-atelier_id="{{$operation->atelier_id}}" data-libelle_operation="{{$operation->libelle_operation}}" data-num_poste_charge="{{$operation->num_poste_charge}}" data-temps_preparation="{{$operation->temps_preparation}}" data-temps_execution="{{$operation->temps_execution}}" data-temps_transfert="{{$operation->temps_transfert}}" data-h_debut="{{$operation->h_debut}}" data-h_fin="{{$operation->h_fin}}" data-commentaire="{{$operation->commentaire}}">
+                                            <span class="edit-modal btn btn-sm btn-outline-warning" data-target="#editModalOperation" data-toggle="modal" data-placement="top" title="" data-original-title="Modifier" data-id="{{$operation->id}}" data-num_operation="{{$operation->num_operation}}" data-produit_id="{{$operation->produit_id}}" data-atelier_id="{{$operation->atelier_id}}" data-libelle_operation="{{$operation->libelle_operation}}" data-poste_charge_id="{{$operation->poste_charge_id}}" data-temps_preparation="{{$operation->temps_preparation}}" data-temps_execution="{{$operation->temps_execution}}" data-temps_transfert="{{$operation->temps_transfert}}" data-h_debut="{{$operation->h_debut}}" data-h_fin="{{$operation->h_fin}}" data-commentaire="{{$operation->commentaire}}">
                                                 <i class="fa fa-pencil"></i>
                                             </span>
 
 
-                                            <span data-toggle="modal" data-target="#deleteModal" class="delete-modal btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn btn-sm m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x btn-outline-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Supprimer" data-id="{{$operation->id}}" data-num_operation="{{$operation->num_operation}}" data-produit_id="{{$operation->produit_id}}" data-atelier_id="{{$operation->atelier_id}}" data-libelle_operation="{{$operation->libelle_operation}}" data-num_poste_charge="{{$operation->num_poste_charge}}" data-temps_preparation="{{$operation->temps_preparation}}" data-temps_execution="{{$operation->temps_execution}}" data-temps_transfert="{{$operation->temps_transfert}}" data-h_debut="{{$operation->h_debut}}" data-h_fin="{{$operation->h_fin}}" data-commentaire="{{$operation->commentaire}}">
+                                            <span data-toggle="modal" data-target="#deleteModal" class="delete-modal btn btn-sm btn-outline-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Supprimer" data-id="{{$operation->id}}" data-num_operation="{{$operation->num_operation}}" data-produit_id="{{$operation->produit_id}}" data-atelier_id="{{$operation->atelier_id}}" data-libelle_operation="{{$operation->libelle_operation}}" data-poste_charge_id="{{$operation->poste_charge_id}}" data-temps_preparation="{{$operation->temps_preparation}}" data-temps_execution="{{$operation->temps_execution}}" data-temps_transfert="{{$operation->temps_transfert}}" data-h_debut="{{$operation->h_debut}}" data-h_fin="{{$operation->h_fin}}" data-commentaire="{{$operation->commentaire}}">
                                                 <i class="fa fa-trash-o"></i>
                                             </span>
                                             </td>
                                         </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -501,7 +508,7 @@
 
 <!-- Modal form to add Operation -->
 <div id="addModalOperation" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -509,34 +516,41 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form">
-
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Numéro d'Opération:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="num_operation_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
+                    </div>
 
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Produit:</label>
                         </div>
-                        <div class="col-12 col-md-9">
-                        <select name="select" id="produit_id_add" class="form-control">
-                            @foreach($produits as $produit)
-                                <option value="{{$produit->id}}">{{$produit->libelle}}</option>
-                            @endforeach
+                        <div class="col">
+                        <select name="select" id="produit_id_addO" class="form-control">
+                            <option value="{{$produit->id}}">{{$produit->libelle}}</option>
+                        
                         </select>
                         </div>
                     </div>
+                    </div>
+                    </div>
 
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Atelier:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                         <select name="select" id="atelier_id_add" class="form-control">
                             @foreach($ateliers as $atelier)
                                 <option value="{{$atelier->id}}">{{$atelier->libelle}}</option>
@@ -544,76 +558,116 @@
                         </select>
                         </div>
                     </div>
+                    </div>
 
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Libéllé d'Opération:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="text" id="libelle_operation_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Numéro de poste de charge:</label>
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
+                            <label for="text-input" class="form-control-label">Poste de charge</label>
                         </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="num_poste_charge_add" placeholder="Text" class="form-control">
+                        <div class="col">
+                        <select name="select" id="poste_charge_id_add" class="form-control">
+                            @foreach($poste_charges as $poste_charge)
+                                <option value="{{$poste_charge->id}}">{{$poste_charge->designation}}</option>
+                            @endforeach
+                        </select>
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Temps de préparation:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="time" id="temps_preparation_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Temps d'éxecution:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="time" id="temps_execution_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Temps de transfert:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="time" id="temps_transfert_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Heure début:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="time" id="h_debut_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="col">
                             <label for="text-input" class="form-control-label">Heure fin:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col">
                             <input type="time" id="h_fin_add" placeholder="Text" class="form-control">
                         </div>
                     </div>
-                    <div class="row form-group">
+                    </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col col-md-3">
                             <label for="text-input" class="form-control-label">Commentaire:</label>
                         </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="commentaire_add" placeholder="Text" class="form-control">
+                        <div class="col col-md-9">
+                            <textarea id="commentaire_add" class="form-control"></textarea>
                         </div>
                     </div>
-                    </form>
+
                     <div class="modal-footer">
                         <button type="button" class="button button1 add" data-dismiss="modal">Add</button>
                         <button type="button" class="button4 button1" data-dismiss="modal">Close</button>
                     </div>
+
+                    </form>
+
+                    
                 </div>
             </div>
         </div>
@@ -623,7 +677,7 @@
 
 <!-- Modal form to show Operation -->
 <div id="showModalOperation" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -634,98 +688,128 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form">
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="num_operation">Numéro d'Opération:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="num_operation">Numéro d'Opération:</label>
+                            </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="num_operation_show" disabled>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="libelle_operation">Libéllé d'opération:</label>
                         </div>
-                            <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="libelle_operation">Libéllé d'opération:</label>
+                            </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="libelle_operation_show" disabled>
                             </div>
                         </div>
+                        </div>
+                        </div>
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Atelier:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                        <select name="select" id="atelier_id_add" class="form-control" disabled>
-                            @foreach($ateliers as $atelier)
-                                <option value="{{$atelier->id}}">{{$atelier->libelle}}</option>
-                            @endforeach
-                        </select>
-                        </div>
-                    </div>
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="num_poste_charge">Numéro poste de charge:</label>
-                        </div>
-                            <div class="col-12 col-md-9">
-                                <input type="name" class="form-control" id="num_poste_charge_show" disabled>
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Atelier:</label>
+                            </div>
+                            <div class="col">
+                            <select name="select" id="atelier_id_add" class="form-control" disabled>
+                                @foreach($ateliers as $atelier)
+                                    <option value="{{$atelier->id}}">{{$atelier->libelle}}</option>
+                                @endforeach
+                            </select>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="temps_preparation">Temps de préparation:</label>
                         </div>
-                            <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="poste_charge_id">Poste de charge:</label>
+                            </div>
+                            <div class="col">
+                            <select name="select" id="poste_charge_id_add" class="form-control" disabled>
+                                @foreach($poste_charges as $poste_charge)
+                                    <option value="{{$poste_charge->id}}">{{$poste_charge->designation}}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="temps_preparation">Temps de préparation:</label>
+                            </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="temps_preparation_show" disabled>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="temps_execution">Temps d'éxecution:</label>
                         </div>
-                            <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="temps_execution">Temps d'éxecution:</label>
+                            </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="temps_execution_show" disabled>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="temps_transfert">Temps de transfert:</label>
                         </div>
-                            <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="temps_transfert">Temps de transfert:</label>
+                        </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="temps_transfert_show" disabled>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="h_debut">Heure début:</label>
                         </div>
-                            <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="h_debut">Heure début:</label>
+                        </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="h_debut_show" disabled>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="h_fin">Heure fin:</label>
                         </div>
-                            <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label class="control-label" for="h_fin">Heure fin:</label>
+                            </div>
+                            <div class="col">
                                 <input type="name" class="form-control" id="h_fin_show" disabled>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class="control-label col-sm-2" for="commentaire">Commentaire:</label>
                         </div>
-                            <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                        <div class="col">
+                            <label class="control-label" for="commentaire">Commentaire:</label>
+                        </div>
+                            <div class="col">
                                 <textarea class="form-control" id="commentaire_show" cols="40" rows="5" disabled></textarea>
                             </div>
+                        </div>
+                        </div>
                         </div>
                         
                     </form>
@@ -740,7 +824,7 @@
 
 <!-- Modal form to edit a Operation -->
 <div id="editModalOperation" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -755,107 +839,135 @@
                             </div>
                         </div>
                         
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Numéro d'opération:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                                <input type="text" class="form-control" id="num_operation_edit">
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Numéro d'opération:</label>
+                            </div>
+                            <div class="col">
+                                    <input type="text" class="form-control" id="num_operation_edit">
+                                </div>
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Libélle d'opération:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Libélle d'opération:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="libelle_operation_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Projet:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                        <input type="text" id="libelle_operation_add" placeholder="Text" class="form-control">
-
                         </div>
                         </div>
 
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Atelier:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                        <select name="select" id="atelier_id_edit" class="form-control">
-                            @foreach($ateliers as $atelier)
-                                <option value="{{$atelier->id}}">{{$atelier->libelle}}</option>
-                            @endforeach
-                        </select>
-                        </div>
-                    </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Numéro de poste de charge:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                                <input type="text" class="form-control" id="num_poste_charge_edit">
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Projet:</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" id="produit_id_editO" placeholder="Text" class="form-control">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Temps de préparation:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Atelier:</label>
+                            </div>
+                            <div class="col">
+                                <select name="select" id="atelier_id_edit" class="form-control">
+                                    @foreach($ateliers as $atelier)
+                                        <option value="{{$atelier->id}}">{{$atelier->libelle}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Poste de charge</label>
+                            </div>
+                            <div class="col">
+                                <select name="select" id="poste_charge_id_edit" class="form-control">
+                                    @foreach($poste_charges as $poste_charge)
+                                        <option value="{{$poste_charge->id}}">{{$poste_charge->designation}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Temps de préparation:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="temps_preparation_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Temps d'éxecution:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Temps d'éxecution:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="temps_execution_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Temps de transfert:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Temps de transfert:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="temps_transfert_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Heure début:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        </div>
+
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Heure début:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="h_debut_edit">
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Heure fin:</label>
                         </div>
-                        <div class="col-12 col-md-9">
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="text-input" class="form-control-label">Heure fin:</label>
+                            </div>
+                            <div class="col">
                                 <input type="text" class="form-control" id="h_fin_edit">
                             </div>
                         </div>
+                        </div>
+                        </div>
 
                         <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class="form-control-label">Commentaire:</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                                <input type="text" class="form-control" id="commentaire_edit">
+                            <div class="col col-md-3">
+                                <label for="text-input" class="form-control-label">Commentaire:</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <textarea class="form-control" id="commentaire_edit"></textarea>
                             </div>
                         </div>
 
@@ -946,6 +1058,7 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
+
 <!-- Delay table load until everything else is loaded -->
 <script>
     $(window).load(function(){
@@ -969,7 +1082,7 @@
             $('#num_operation_show').val($(this).data('num_operation'));
             $('#produit_id_show').val($(this).data('produit_id'));
             $('#atelier_id_show').val($(this).data('atelier_id'));
-            $('#num_poste_charge_show').val($(this).data('num_poste_charge'));
+            $('#poste_charge_id_show').val($(this).data('poste_charge_id'));
             $('#temps_preparation_show').val($(this).data('temps_preparation'));
             $('#temps_execution_show').val($(this).data('temps_execution'));
             $('#temps_transfert_show').val($(this).data('temps_transfert'));
@@ -993,9 +1106,9 @@
                 data: {
                     '_token': $('input[name=_token]').val(),
                     'num_operation': $('#num_operation_add').val(),
-                    'produit_id': $('#produit_id_add').val(),
+                    'produit_id': $('#produit_id_addO').val(),
                     'atelier_id': $('#atelier_id_add').val(),
-                    'num_poste_charge': $('#num_poste_charge_add').val(),
+                    'poste_charge_id': $('#poste_charge_id_add').val(),
                     'temps_preparation': $('#temps_preparation_add').val(),
                     'temps_execution': $('#temps_execution_add').val(),
                     'temps_transfert': $('#temps_transfert_add').val(),
@@ -1008,7 +1121,7 @@
 
                      
                         toastr.success('Successfully added Client!', 'Success Alert', {timeOut: 5000});
-                        $('#operationsTable').append("<tr class='item" + data.id + "'><td>" + data.num_poste_charge + "</td><td>" + data.produit_id + "</td><td>" + data.atelier_id + "</td><td>" + data.libelle_operation + "</td><td>" + data.commentaire + "</td><td><button class='show-modal button button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-num_poste_charge='" + data.num_poste_charge + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-num_poste_charge='" + data.num_poste_charge + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-edit'></span> Edit</button><button class='delete-modal button3 button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-num_poste_charge='" + data.num_poste_charge + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('#operationsTable').append("<tr class='item" + data.id + "'><td>" + data.num_operation + "</td><td>" + data.libelle_operation + "</td><td>" + data.atelier_id + "</td><td>" + data.poste_charge_id + "</td><td>" + data.commentaire + "</td><td><button class='show-modal button button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-poste_charge_id='" + data.poste_charge_id + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-poste_charge_id='" + data.poste_charge_id + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-edit'></span> Edit</button><button class='delete-modal button3 button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-poste_charge_id='" + data.poste_charge_id + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
 
                         
                         $('.new_published').on('ifChanged', function(event){
@@ -1036,9 +1149,9 @@
             $('.modal-title').text('');
             $('#id_edit').val($(this).data('id'));
             $('#num_operation_edit').val($(this).data('num_operation'));
-            $('#produit_id_edit').val($(this).data('produit_id'));
+            $('#produit_id_editO').val($(this).data('produit_id'));
             $('#atelier_id_edit').val($(this).data('atelier_id'));
-            $('#num_poste_charge_edit').val($(this).data('num_poste_charge'));
+            $('#poste_charge_id_edit').val($(this).data('poste_charge_id'));
             $('#temps_preparation_edit').val($(this).data('temps_preparation'));
             $('#temps_execution_edit').val($(this).data('temps_execution'));
             $('#temps_transfert_edit').val($(this).data('temps_transfert'));
@@ -1057,9 +1170,9 @@
                     '_token': $('input[name=_token]').val(),
                     'id': $("#id").val(),
                     'num_operation': $("#num_operation_edit").val(),
-                    'produit_id': $("#produit_id_edit").val(),
+                    'produit_id': $("#produit_id_editO").val(),
                     'atelier_id': $("#atelier_id_edit").val(),
-                    'num_poste_charge': $('#num_poste_charge_edit').val(),
+                    'poste_charge_id': $('#poste_charge_id_edit').val(),
                     'temps_preparation': $('#temps_preparation_edit').val(),
                     'temps_execution': $('#temps_execution_edit').val(),
                     'temps_transfert': $('#temps_transfert_edit').val(),
@@ -1071,7 +1184,7 @@
                 success: function(data) {
                     
                     toastr.success('Successfully updated Operation!', 'Success Alert', {timeOut: 5000});
-                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.num_operation + "</td><td>" + data.produit_id + "</td><td>" + data.atelier_id + "</td><td>" + data.libelle_operation + "</td><td>" + data.num_poste_charge + "</td><td>" + data.commentaire + "</td><td><button class='show-modal button button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-num_poste_charge='" + data.num_poste_charge + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-num_poste_charge='" + data.num_poste_charge + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                    $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.num_operation + "</td><td>" + data.libelle_operation + "</td><td>" + data.atelier_id + "</td><td>" + data.poste_charge_id + "</td><td>" + data.commentaire + "</td><td><button class='show-modal button button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-poste_charge_id='" + data.poste_charge_id + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal button2 button1' data-num_operation='" + data.num_operation + "' data-produit_id='" + data.produit_id + "' data-atelier_id='" + data.atelier_id + "' data-libelle_operation='" + data.libelle_operation + "' data-poste_charge_id='" + data.poste_charge_id + "' data-commentaire='" + data.commentaire + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
                         
                     
                 }
@@ -1127,7 +1240,7 @@
                 data: {
                     '_token': $('input[name=_token]').val(),
                     'libelle': $('#libelle_add').val(),
-                    'produit_id': $('#produit_id_add').val(),
+                    'produit_id': $('#produit_id_addOF').val(),
                     'commentaie': $('#commentaie_add').val(),
                 },
                 success: function(data) {
@@ -1162,7 +1275,7 @@
             $('.modal-title').text('');
             $('#id_edit').val($(this).data('id'));
             $('#libelle_edit').val($(this).data('libelle'));
-            $('#produit_id_edit').val($(this).data('produit_id'));
+            $('#produit_id_editOF').val($(this).data('produit_id'));
             $('#commentaie_edit').val($(this).data('commentaie'));
             id = $('#id_edit').val();
             $('#editModalOF').modal('show');
@@ -1175,7 +1288,7 @@
                     '_token': $('input[name=_token]').val(),
                     'id': $("#id").val(),
                     'libelle': $("#libelle_edit").val(),
-                    'produit_id': $("#produit_id_edit").val(),
+                    'produit_id': $("#produit_id_editOF").val(),
                     'commentaie': $('#commentaie_edit').val(),
                 },
                 success: function(data) {
@@ -1211,7 +1324,64 @@
         });
 
         
+    var date = <?php echo $produit_date; ?>;
+    var pourcentage = <?php echo $produit_pourcentage; ?>;
 
+var ctx = document.getElementById('myChart').getContext("2d");
+        
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: date,
+        datasets: [{
+            label: "Data",
+            borderColor: "#80b6f4",
+            pointBorderColor: "#80b6f4",
+            pointBackgroundColor: "#80b6f4",
+            pointHoverBackgroundColor: "#80b6f4",
+            pointHoverBorderColor: "#80b6f4",
+            pointBorderWidth: 10,
+            pointHoverRadius: 10,
+            pointHoverBorderWidth: 1,
+            pointRadius: 3,
+            fill: false,
+            borderWidth: 4,
+            data: pourcentage
+        }]
+    },
+    options: {
+        legend: {
+            position: "bottom"
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: "rgba(0,0,0,0.5)",
+                    fontStyle: "bold",
+                    beginAtZero: true,
+                    maxTicksLimit: 5,
+                    padding: 20
+                },
+                gridLines: {
+                    drawTicks: false,
+                    display: false
+                }
+
+            }],
+            xAxes: [{
+                gridLines: {
+                    zeroLineColor: "transparent"
+                },
+                ticks: {
+                    padding: 20,
+                    fontColor: "rgba(0,0,0,0.5)",
+                    fontStyle: "bold"
+                }
+            }]
+        }
+    }
+});
         
 
 
