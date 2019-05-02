@@ -133,6 +133,7 @@
                                             <th>Libelle</th>
                                             <th>Client</th>
                                             <th>Pourcentage</th>
+                                            <th>Status</th>
                                             <th>Date début</th>
                                             <th>Date fin</th>
                                             <th>Action</th>
@@ -151,12 +152,13 @@
                                             @endforeach
 
                                             <td>{{ $produit->pourcentage}}</td>
+                                            <td>{{ $produit->status}}</td>
                                             <td>{{ $produit->date_debut}}</td>
                                             <td>{{ $produit->date_fin}}</td>
                                             <td>
-                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-status="{{$produit->status}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
                                                 <i class="fa fa-eye"></i></span>
-                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$produit->id}}" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$produit->id}}" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-status="{{$produit->status}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
                                                 <i class="fa fa-pencil"></i></span>
 
                                             </td>
@@ -205,6 +207,7 @@
                                             <th>Libelle</th>
                                             <th>Client</th>
                                             <th>Pourcentage</th>
+                                            <th>Status</th>
                                             <th>Date début</th>
                                             <th>Date fin</th>
                                             <th>Action</th>
@@ -223,14 +226,15 @@
                                             @endforeach
 
                                             <td>{{ $produit->pourcentage}}</td>
+                                            <td>{{ $produit->status}}</td>
                                             <td>{{ $produit->date_debut}}</td>
                                             <td>{{ $produit->date_fin}}</td>
                                             <td>
-                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <span class="show-modal btn btn-sm btn-outline-success" data-toggle="modal" data-target="#showModal" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-status="{{$produit->status}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
                                                 <i class="fa fa-eye"></i></span>
-                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$produit->id}}" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <span class="edit-modal btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#editModal" data-id="{{$produit->id}}" data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-status="{{$produit->status}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
                                                 <i class="fa fa-pencil"></i></span>
-                                                <span class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$produit->id}}"  data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
+                                                <span class="delete-modal btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{$produit->id}}"  data-libelle="{{$produit->libelle}}" data-client_id="{{$produit->client_id}}" data-pourcentage="{{$produit->pourcentage}}" data-status="{{$produit->status}}" data-date_debut="{{$produit->date_debut}}" data-date_fin="{{$produit->date_fin}}">
                                                 <i class="fa fa-trash-o"></i></span>
 
                                             </td>
@@ -291,6 +295,20 @@
                         </div>
                         <div class="col-12 col-md-9">
                             <input type="text" id="pourcentage_add" placeholder="pourcentage" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="text-input" class="form-control-label">Status:</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                                <select name="role" id="status_add" class="form-control" required>
+                                        <option value="Nouveau">Nouveau</option>
+                                        <option value="test1">Test1</option>
+                                        <option value="test2">test2</option>
+                                        <option value="test3">test3</option>
+                                </select>
                         </div>
                     </div>
 
@@ -373,6 +391,15 @@
 
                         <div class="row form-group">
                         <div class="col col-md-3">
+                            <label class="control-label col-sm-2" for="libelle">Status:</label>
+                        </div>
+                            <div class="col-12 col-md-9">
+                                <input type="name" class="form-control" id="status_show" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                        <div class="col col-md-3">
                             <label class="control-label col-sm-2" for="date_debut">Date début:</label>
                         </div>
                             <div class="col-12 col-md-9">
@@ -446,6 +473,20 @@
                                 <input type="text" class="form-control" id="pourcentage_edit">
                             </div>
                         </div>
+
+                        <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="text-input" class="form-control-label">Status:</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                                <select name="role" id="status_edit" class="form-control" required>
+                                        <option value="Nouveau">Nouveau</option>
+                                        <option value="test1">Test1</option>
+                                        <option value="test2">test2</option>
+                                        <option value="test3">test3</option>
+                                </select>
+                        </div>
+                    </div>
 
                         <div class="row form-group">
                         <div class="col col-md-3">
@@ -577,6 +618,7 @@
             $('#libelle_show').val($(this).data('libelle'));
             $('#client_id_show').val($(this).data('client_id'));
             $('#pourcentage_show').val($(this).data('pourcentage'));
+            $('#status_show').val($(this).data('status'));
             $('#date_debut_show').val($(this).data('date_debut'));
             $('#date_fin_show').val($(this).data('date_fin'));
             $('#showModal').modal('show');
@@ -597,6 +639,7 @@
                     'libelle': $('#libelle_add').val(),
                     'client_id': $('#client_id_add').val(),
                     'pourcentage': $('#pourcentage_add').val(),
+                    'status': $('#status_add').val(),
                     'date_debut': $('#date_debut_add').val(),
                     'date_fin': $('#date_fin_add').val(),
                 },
@@ -604,7 +647,7 @@
 
                     
                         toastr.success('Successfully added Projet!', 'Success Alert', {timeOut: 5000});
-                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.client_id + "</td><td>" + data.pourcentage + "</td><td>" + data.date_debut + "</td><td>" + data.date_fin + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-pencil'></i></span><span class='delete-modal btn btn-sm btn-outline-danger' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-trash-o'></i></span></td></tr>");
+                        $('#bootstrap-data-table-export').append("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.client_id + "</td><td>" + data.pourcentage + "</td><td>" + data.status + "</td><td>" + data.date_debut + "</td><td>" + data.date_fin + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-status='" + data.status + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-status='" + data.status + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-pencil'></i></span><span class='delete-modal btn btn-sm btn-outline-danger' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-status='" + data.status + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-trash-o'></i></span></td></tr>");
 
                         
                         $('.new_published').on('ifChanged', function(event){
@@ -633,6 +676,7 @@
             $('#libelle_edit').val($(this).data('libelle'));
             $('#client_id_edit').val($(this).data('client_id'));
             $('#pourcentage_edit').val($(this).data('pourcentage'));
+            $('#status_edit').val($(this).data('status'));
             $('#date_debut_edit').val($(this).data('date_debut'));
             $('#date_fin_edit').val($(this).data('date_fin'));
             id = $('#id_edit').val();
@@ -648,13 +692,14 @@
                     'libelle': $("#libelle_edit").val(),
                     'client_id': $('#client_id_edit').val(),
                     'pourcentage': $('#pourcentage_edit').val(),
+                    'status': $('#status_edit').val(),
                     'date_debut': $('#date_debut_edit').val(),
                     'date_fin': $('#date_fin_edit').val()
                 },
                 success: function(data) {
 
                         toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.client_id + "</td><td>" + data.pourcentage + "</td><td>" + data.date_debut + "</td><td>" + data.date_fin + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-trash-o'></i></span></td></tr>");
+                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.libelle + "</td><td>" + data.client_id + "</td><td>" + data.pourcentage + "</td><td>" + data.status + "</td><td>" + data.date_debut + "</td><td>" + data.date_fin + "</td><td><span class='show-modal btn btn-sm btn-outline-success' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-status='" + data.status + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-eye'></i></span> <span class='edit-modal btn btn-sm btn-outline-warning' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-status='" + data.status + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-pencil'></i></span> <span class='delete-modal btn btn-sm btn-outline-danger' data-libelle='" + data.libelle + "' data-client_id='" + data.client_id + "' data-pourcentage='" + data.pourcentage + "' data-status='" + data.status + "' data-date_debut='" + data.date_debut + "' data-date_fin='" + data.date_fin + "'><i class='fa fa-trash-o'></i></span></td></tr>");
                         
                     
                 }

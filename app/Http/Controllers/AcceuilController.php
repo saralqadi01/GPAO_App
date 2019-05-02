@@ -105,15 +105,38 @@ class AcceuilController extends Controller
             $produit_pourcentage = Produit::select(DB::raw("pourcentage"))
                ->get()->toArray();
             $produit_pourcentage = array_column($produit_pourcentage, 'pourcentage');
+
+            // $produit_total = Produit::select(DB::raw("count(id)"))
+            // ->get()->toArray();
           
+            $produit_total = DB::table('produits')->count();
+            $client_total = DB::table('clients')->count();
+            $produit_new = DB::table('produits')
+                ->select(DB::raw('count(*)'))
+                ->where('status', '=', 'Nouveau')
+                ->get();
         
+
+
           return view('acceuil')
                  ->with('produit_libelle',json_encode($produit_libelle,JSON_NUMERIC_CHECK))
-                 ->with('produit_pourcentage',json_encode($produit_pourcentage,JSON_NUMERIC_CHECK));
+                 ->with('produit_pourcentage',json_encode($produit_pourcentage,JSON_NUMERIC_CHECK))
+                 ->with('client_total',json_encode($client_total,JSON_NUMERIC_CHECK))
+                 ->with('produit_new',json_encode($produit_new,JSON_NUMERIC_CHECK))
+                 ->with('produit_total',json_encode($produit_total,JSON_NUMERIC_CHECK));
 
        
 
         
+    }
+
+    public function total()
+    {
+        $produit_total = Produit::select(DB::raw("SUM(id) as count"))
+            ->get()->toArray();
+
+        return view('acceuil')
+                ->with('produit_total',json_encode($produit_total,JSON_NUMERIC_CHECK));
     }
 
     

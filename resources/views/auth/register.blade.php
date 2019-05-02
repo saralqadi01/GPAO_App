@@ -1,20 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<!doctype html>
 
-                <div class="card-body">
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sufee Admin - HTML5 Admin Template</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/themify-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/flag-icon-css/css/flag-icon.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/selectFX/css/cs-skin-elastic.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+
+<body class="bg-dark">
+
+
+<div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="">
+                        <img class="align-content" src="images/header-light.png" alt="">
+                    </a>
+                </div>
+                <div class="login-form">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                        <div class="form-group">
+                            <label for="name">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
@@ -22,13 +55,11 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
-                            </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <div class="form-group">
+                            <label for="email">{{ __('E-Mail Address') }}</label>
 
-                            <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
@@ -36,37 +67,25 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
                         </div>
 
-                        <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
-                            <div class="col-md-6">
-                                <!-- <input id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" value="{{ old('role') }}" required> -->
+                        <div class="form-group">
+                                <input id="role" type="hidden" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" value="{{ old('role') }}" required>
 
-                                <select name="role" id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" value="{{ old('role') }}" required>
-                                        <option value="utilisateur">Utilisateur</option>
-                                        <option value="administrateur">Administrateur</option>
-                                        <option value="chef d'atelier">Chef d'atelier</option>
-                                        <option value="chef de projet">Chef de projet</option>
-                                </select>
-
-                                <!-- <script>
+                                <script>
                                 document.getElementById("role").defaultValue = "utilisateur";
-                                </script> -->
+                                </script> 
 
                                 @if ($errors->has('role'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('role') }}</strong>
                                     </span>
                                 @endif
-                            </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div class="form-group">
+                            <label for="password">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
@@ -74,28 +93,32 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                        <div class="form-group">
+                            <label for="password-confirm">{{ __('Confirm Password') }}</label>
 
-                            <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
+                            
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">
                                     {{ __('Register') }}
                                 </button>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
-        </div>
     </div>
 </div>
+
+    <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendors/popper.js/dist/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
+</body>
+
+</html>
+
 @endsection

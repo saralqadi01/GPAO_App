@@ -149,7 +149,6 @@ class OperationController extends Controller
     {
         $produit = DB::table('produits')->where('id','=',$id)->first();
 
-        $audit = DB::table('audit')->where('produit_id','=',$produit->id)->get();
 
       
         $operations = Operation::all();
@@ -159,17 +158,16 @@ class OperationController extends Controller
         $poste_charges = Poste_charge::all();
 
         $produit_date = audit::select(DB::raw("changetime"))
+            ->where('produit_id','=',$id)
             ->get()->toArray();
         $produit_date = array_column($produit_date, 'changetime');
 
         $produit_pourcentage = audit::select(DB::raw("pourcentage"))
+            ->where('produit_id','=',$id)
             ->get()->toArray();
         $produit_pourcentage = array_column($produit_pourcentage, 'pourcentage');
 
-        $produit_id = audit::select(DB::raw("produit_id"))
-            ->where('produit_id','=',$produit->id)
-            ->get()->toArray();
-        $produit_id = array_column($produit_id, 'produit_id');
+       
 
         return view('profil_projet.index',['produit' => $produit,'operations' => $operations,'ordre_fabrications' => $ordre_fabrications,'ateliers' => $ateliers, 'poste_charges' => $poste_charges, 'clients' => $clients])
         ->with('produit_date',json_encode($produit_date,JSON_NUMERIC_CHECK))

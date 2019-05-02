@@ -48,6 +48,7 @@ class ProduitController extends Controller
         $produit->libelle = $request->libelle;
         $produit->client_id = $request->client_id;
         $produit->pourcentage = $request->pourcentage;
+        $produit->status = $request->status;
         $produit->date_debut = $request->date_debut;
         $produit->date_fin = $request->date_fin;
         $produit->save();
@@ -91,6 +92,7 @@ class ProduitController extends Controller
             $produit->libelle = $request->libelle;
             $produit->client_id = $request->client_id;
             $produit->pourcentage = $request->pourcentage;
+            $produit->status = $request->status;
             $produit->date_debut = $request->date_debut;
             $produit->date_fin = $request->date_fin;
             $produit->save();
