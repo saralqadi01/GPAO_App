@@ -92,18 +92,8 @@
     </div>
     </div>
 @else
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading"><b>Dashboard</b></div>
-                <div class="panel-body">
-                <canvas id="canvas" height="280" width="600"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 
 <div class="col-lg-3 col-md-6">
         <div class="card">
@@ -113,20 +103,6 @@
                     <div class="stat-content dib">
                         <div class="stat-text">Total Project</div>
                         <div class="stat-digit">{{$produit_total}}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Total Client</div>
-                        <div class="stat-digit">{{$client_total}}</div>
                     </div>
                 </div>
             </div>
@@ -151,15 +127,86 @@
         <div class="card">
             <div class="card-body">
                 <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-link text-danger border-danger"></i></div>
+                    <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
                     <div class="stat-content dib">
-                        <div class="stat-text">Referrals</div>
-                        <div class="stat-digit">2,781</div>
+                        <div class="stat-text">Projet en cours</div>
+                        <div class="stat-digit">3</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-link text-danger border-danger"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Projet terminé</div>
+                        <div class="stat-digit">1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+    <div class="card">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                <canvas id="canvas" height="280" width="600"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Liste des ateliers non disponibles</strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                
+                                    <thead>
+                                        <tr>
+                                            <th>Nom Atelier</th>
+                                            <th>Nom Projet</th>
+                                            <th>Nom Opération</th>
+                                            <th>Heure début</th>
+                                            <th>Heure fin</th>
+                                        </tr>
+                                        {{ csrf_field() }}
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>atelier02</td>
+                                            <td>Projet07</td>
+                                            <td>OP02</td>
+                                            <td>08:00</td>
+                                            <td>12:00</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+            </div><!-- .content -->
     @endif
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\Produit;
 
 class ClientsController extends Controller
 {
@@ -20,6 +21,8 @@ class ClientsController extends Controller
     public function index()
     {
         $clients = Client::all();
+        $produit_new = Produit::where('status', '=', 'Nouveau')
+                ->count();
 
         return view('clients.index', ['clients' => $clients]);
     }

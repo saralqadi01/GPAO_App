@@ -305,9 +305,8 @@
                         <div class="col-12 col-md-9">
                                 <select name="role" id="status_add" class="form-control" required>
                                         <option value="Nouveau">Nouveau</option>
-                                        <option value="test1">Test1</option>
-                                        <option value="test2">test2</option>
-                                        <option value="test3">test3</option>
+                                        <option value="En cours">En cours</option>
+                                        <option value="Terminé">Terminé</option>
                                 </select>
                         </div>
                     </div>
@@ -481,9 +480,8 @@
                         <div class="col-12 col-md-9">
                                 <select name="role" id="status_edit" class="form-control" required>
                                         <option value="Nouveau">Nouveau</option>
-                                        <option value="test1">Test1</option>
-                                        <option value="test2">test2</option>
-                                        <option value="test3">test3</option>
+                                        <option value="En cours">En cours</option>
+                                        <option value="Terminé">Terminé</option>
                                 </select>
                         </div>
                     </div>
@@ -531,7 +529,7 @@
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <h3 class="text-center">Are you sure you want to delete the following Client?</h3>
+                    <h3 class="text-center">êtes vous sûr de bien vouloir supprimer ce projet ?</h3>
                     <br />
                     <form class="form-horizontal" role="form">
                         
@@ -543,8 +541,8 @@
                         </div>
 
                         <div class="row form-group">
-                            <label class="control-label col-sm-2" for="libelle">Nom Projet:</label>
-                            <div class="col-sm-10">
+                            <!-- <label class="control-label col-sm-2" for="libelle">Nom Projet:</label> -->
+                            <div class="col-sm-12">
                                 <input type="text" class="form-control" id="libelle_delete" disabled>
                             </div>
                         </div>

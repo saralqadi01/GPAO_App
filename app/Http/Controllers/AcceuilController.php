@@ -112,9 +112,8 @@ class AcceuilController extends Controller
             $produit_total = DB::table('produits')->count();
             $client_total = DB::table('clients')->count();
             $produit_new = DB::table('produits')
-                ->select(DB::raw('count(*)'))
                 ->where('status', '=', 'Nouveau')
-                ->get();
+                ->count();
         
 
 

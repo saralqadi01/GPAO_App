@@ -1,3 +1,4 @@
+<?php use App\Http\Controllers\ProduitController; ?>
 @extends('layouts.master')
 
 @section('content')

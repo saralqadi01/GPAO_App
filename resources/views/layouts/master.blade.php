@@ -1,3 +1,4 @@
+<?php use App\Http\Controllers\ProduitController; ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -59,7 +60,7 @@
                     </li>
                     
                     <li class="active">
-                        <a href="produits">  <i class="menu-icon fa fa-laptop"></i>Gestion de projet <span class="count bg-primary">1</span></a>
+                        <a href="produits">  <i class="menu-icon fa fa-laptop"></i>Gestion de projet <span class="count bg-primary">4</span></a>
                     </li>
 
                     <li class="active">
@@ -79,7 +80,7 @@
                     </li>
 
                     <li class="active">
-                        <a href="users">  <i class="menu-icon fa fa-laptop"></i>Gestion des utilisateurs</a>
+                        <a href="users">  <i class="menu-icon fa fa-laptop"></i>Utilisateurs <span class="count bg-primary">1</span></a>
                     </li>
 
                     
