@@ -84,13 +84,16 @@
 </div> -->
 
 
-    <div class="col-md-5">
+    <div class="col-md-4">
     <div class="card-body">
     <div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Bienvenue!</h4>
-        
+    <h4 class="text-center alert-heading">Bienvenue! </h4>
+    <p class="text-center">Vous êtes en attente par l'administrateur.</p>
+    </div> 
     </div>
     </div>
+
+
 @else
 
 
